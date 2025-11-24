@@ -13,6 +13,7 @@ python filestats.py <base_directory> [-o OUTPUT]
 ### Arguments
 - `base_directory`: Path to the folder you want to scan.
 - `-o, --output`: Optional path for the generated CSV file. Defaults to `file_stats.csv` in the current working directory.
+- `-s, --stats`: Also print a summary of file counts grouped by last modification year (sorted by year) to stdout.
 
 ### Output columns
 - `file_name`
@@ -23,5 +24,5 @@ python filestats.py <base_directory> [-o OUTPUT]
 
 Example:
 ```
-python filestats.py ~/Documents -o documents_report.csv
+python filestats.py ~/Documents -o documents_report.csv -s
 ```

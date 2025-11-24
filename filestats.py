@@ -1,5 +1,6 @@
 import argparse
 import csv
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from typing import Iterable, List, Tuple
@@ -71,6 +72,12 @@ def parse_args() -> argparse.Namespace:
         default=Path('file_stats.csv'),
         help='Path to the output CSV file (default: file_stats.csv).',
     )
+    parser.add_argument(
+        '-s',
+        '--stats',
+        action='store_true',
+        help='Print counts of files by last modification year to stdout.',
+    )
     return parser.parse_args()
 
 
@@ -84,6 +91,12 @@ def main() -> None:
     records = collect_file_stats(base_dir)
     write_csv(records, args.output)
     print(f"Collected {len(records)} files from '{base_dir}' into '{args.output}'.")
+
+    if args.stats:
+        years = [datetime.fromisoformat(record[1]).year for record in records]
+        year_counts = Counter(years)
+        for year in sorted(year_counts):
+            print(f"{year}: {year_counts[year]}")
 
 
 if __name__ == '__main__':
