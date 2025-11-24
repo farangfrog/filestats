@@ -7,7 +7,7 @@ A small Python CLI utility that walks a base directory (and all nested subdirect
 
 ## Usage
 ```
-python filestats.py <base_directory> [-o OUTPUT] [-s]
+python filestats.py <base_directory> [-o OUTPUT]
 ```
 
 ### Arguments
